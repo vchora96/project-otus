@@ -1,13 +1,12 @@
 package ru.oshkin;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import ru.oshkin.pages.LogInPage;
 import ru.oshkin.util.WebBrowserType;
-import ru.oshkin.util.WebDriverFactory;
+import ru.oshkin.factory.WebDriverFactory;
 
 import java.util.Locale;
 
@@ -17,7 +16,7 @@ public class OtusHomeworkTest {
 
     @BeforeEach
     public void startUp() {
-      //  clean test -Dbrowser=CHROME -Dlogin=macorax714@idurse.com -Dpass=Test12345
+        //  clean test -Dbrowser=CHROME -Dlogin=macorax714@idurse.com -Dpass=Test12345
         String envVariable = System.getProperty("browser", "CHROME");
         this.type = WebBrowserType.valueOf(envVariable.toUpperCase(Locale.ROOT));
     }
@@ -31,7 +30,7 @@ public class OtusHomeworkTest {
 
     @Test
     public void setPrivetDataOtusTest() {
-        driver = WebDriverFactory.create(type);
+        driver = WebDriverFactory.create(type, null);
 
         new LogInPage(driver).logInByUser();
 
