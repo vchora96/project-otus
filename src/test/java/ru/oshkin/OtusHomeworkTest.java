@@ -2,6 +2,7 @@ package ru.oshkin;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import ru.oshkin.pages.LogInPage;
@@ -13,6 +14,7 @@ import java.util.Locale;
 public class OtusHomeworkTest {
     private WebDriver driver;
     private WebBrowserType type;
+
 
     @BeforeEach
     public void startUp() {
@@ -32,22 +34,26 @@ public class OtusHomeworkTest {
     public void setPrivetDataOtusTest() {
         driver = WebDriverFactory.create(type, null);
 
-        new LogInPage(driver).logInByUser();
+        new LogInPage(driver)
+                .logInByUser()
+                .openTesting();
 
 //        driver.quit();
 //        driver = WebDriverFactory.create(type);
 //        new LogInPage(driver).logInByUser();
-
     }
 
-    @Test
+  /*  @Test
     public void setPrivetDataOtusWithOptionsTest() {
+        driver = WebDriverFactory.create(type, options);
+
         ChromeOptions options = new ChromeOptions();
         options.addArguments("headless");
         driver = WebDriverFactory.create(type, options);
 
         new LogInPage(driver)
                 .logInByUser();
-    }
-
+        driver.close();
+        driver
+    }*/
 }

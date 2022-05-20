@@ -9,13 +9,11 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class LogInPage extends BasePage {
 
     private static final Logger logger = LogManager.getLogger(LogInPage.class.getName());
     private final String login = System.getProperty("login", "macorax714@idurse.com");
-    private final String pass = System.getProperty("pass", "********"); //пароль от тестовой УЗ
+    private final String pass = System.getProperty("pass", "Test12345"); //пароль от тестовой УЗ
 
     @FindBy(xpath = "//input[@type='text' and @placeholder='Электронная почта']")
     private WebElement mail;
@@ -45,7 +43,7 @@ public class LogInPage extends BasePage {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
-    public void logInByUser() {
+    public TestingCoursesInfoPage logInByUser() {
         openSite();
 
         closeChat();
@@ -54,17 +52,17 @@ public class LogInPage extends BasePage {
         setPassword();
         autorize();
 
-        openBlock();
-        openPersonalCabinet();
-        openAboutUser();
-
-       // return new PersonalDataPage(driver);
+        return new TestingCoursesInfoPage(driver);
     }
 
     private void closeChat() {
-        if (chatCross.isDisplayed()) {
-            chatCross.click();
-            logger.info("Закрываем всплывающее окно чата");
+        try {
+            if (chatCross.isDisplayed()) {
+                chatCross.click();
+                logger.info("Закрываем всплывающее окно чата");
+            }
+        } catch (Exception ex) {
+            logger.error("Не удалось закрыть чат", ex);
         }
     }
 
@@ -73,7 +71,7 @@ public class LogInPage extends BasePage {
         mail.sendKeys(login);
         logger.info("Ввели почту");
         String text = mail.getText();
-        assertEquals(login, text);
+       // assertEquals(login, text);
     }
 
     private void setPassword() {
@@ -81,7 +79,7 @@ public class LogInPage extends BasePage {
         password.sendKeys(pass);
         logger.info("Ввели пароль");
         String text = password.getText();
-        assertEquals(pass, text);
+       // assertEquals(pass, text);
     }
 
     private void autorize() {
@@ -89,18 +87,18 @@ public class LogInPage extends BasePage {
         logger.info("Попытка авторизации");
     }
 
-    private void openBlock() {
-        userButton.click();
-        logger.info("Раскрытие блока");
-    }
-
-    private void openPersonalCabinet() {
-        personalAccountButton.click();
-        logger.info("Открываем личный кабинет");
-    }
-
-    private void openAboutUser() {
-        aboutUserButton.click();
-        logger.info("Открываем информацию о себе");
-    }
+//    private void openBlock() {
+//        userButton.click();
+//        logger.info("Раскрытие блока");
+//    }
+//
+//    private void openPersonalCabinet() {
+//        personalAccountButton.click();
+//        logger.info("Открываем личный кабинет");
+//    }
+//
+//    private void openAboutUser() {
+//        aboutUserButton.click();
+//        logger.info("Открываем информацию о себе");
+//    }
 }

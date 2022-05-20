@@ -6,13 +6,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 public class BasePage {
 
 
     private static final Logger logger = LogManager.getLogger(BasePage.class.getName());
+    protected final Wait<WebDriver> wait;
 
     protected WebDriver driver;
     //получаем свойство, определенное JVM (либо сам JVM, либо любые опции -D)
@@ -23,7 +26,10 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(driver, this);// инициализирует поля помеченные @FindBy
+        wait = new WebDriverWait(driver,
+                Duration.ofSeconds(10).toMillis(),
+                Duration.ofSeconds(5).toMillis());
     }
 
     protected void openSite() {
