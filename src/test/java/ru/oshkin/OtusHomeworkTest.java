@@ -2,9 +2,7 @@ package ru.oshkin;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import ru.oshkin.pages.LogInPage;
 import ru.oshkin.util.WebBrowserType;
 import ru.oshkin.factory.WebDriverFactory;
@@ -36,7 +34,8 @@ public class OtusHomeworkTest {
 
         new LogInPage(driver)
                 .logInByUser()
-                .openTesting();
+                .openTesting()
+                .validateCardInfo();
 
 //        driver.quit();
 //        driver = WebDriverFactory.create(type);

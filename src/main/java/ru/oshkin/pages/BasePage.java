@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static java.util.concurrent.TimeUnit.SECONDS;
+
 public class BasePage {
 
 
@@ -26,6 +28,7 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
+        driver.manage().timeouts().implicitlyWait(5, SECONDS);
         PageFactory.initElements(driver, this);// инициализирует поля помеченные @FindBy
         wait = new WebDriverWait(driver,
                 Duration.ofSeconds(10).toMillis(),

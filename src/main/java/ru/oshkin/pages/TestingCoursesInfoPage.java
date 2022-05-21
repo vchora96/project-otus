@@ -2,6 +2,7 @@ package ru.oshkin.pages;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,17 +24,22 @@ public class TestingCoursesInfoPage extends BasePage{
 
     public TestingCoursesInfoPage(WebDriver driver) {
         super(driver);
-        driver.manage().timeouts().implicitlyWait(5, SECONDS);
     }
 
-    public void openTesting(){
+    public CardInfoPage openTesting(){
+        driver.navigate().refresh();
         final WebElement until = wait.until(ExpectedConditions.elementToBeClickable(buttonTesting));
         until.click();
         logger.info("Кликаем на раздел Тестирование");
 
         final int size = lessons.size();
-        logger.info("");
+        Assertions.assertEquals(11, size);
+        logger.info("Отобразилось 11 карточек");
 
+        lessons.get(0).click();
+        logger.info("Кликаем на первую карточку");
+
+        return new CardInfoPage(driver);
     }
 
 
