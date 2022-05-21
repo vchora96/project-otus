@@ -19,7 +19,7 @@ public class BasePage {
     private static final Logger logger = LogManager.getLogger(BasePage.class.getName());
     protected final Wait<WebDriver> wait;
 
-    protected WebDriver driver;
+    public WebDriver driver;
     //получаем свойство, определенное JVM (либо сам JVM, либо любые опции -D)
     private final String baseUrl = System.getProperty("url", "https://otus.ru");
 

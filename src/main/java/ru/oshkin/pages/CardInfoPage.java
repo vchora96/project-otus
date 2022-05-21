@@ -17,19 +17,19 @@ public class CardInfoPage extends BasePage{
     @FindBy(css = ".course-header2__subtitle")
     private WebElement subtitle; //Описание
 
-    @FindBy(css = "div.course-header2-bottom__content-items > div:nth-child(1) div.course-header2-bottom__content-item-text" +
-            " p.course-header2-bottom__item-text")
-    private WebElement durationCourse; // Продолжительность курса
+//    @FindBy(css = "div.course-header2-bottom__content-items > div:nth-child(1) div.course-header2-bottom__content-item-text" +
+//            " p.course-header2-bottom__item-text")
+//    private WebElement durationCourse; // Продолжительность курса
 
-    @FindBy(css = "course-header2-bottom__content-items > div:nth-child(2) div.course-header2-bottom__content-item-text" +
-            " p.course-header2-bottom__item-text")
-    private WebElement format; // Формат
+//    @FindBy(css = "course-header2-bottom__content-items > div:nth-child(2) div.course-header2-bottom__content-item-text" +
+//            " p.course-header2-bottom__item-text")
+//    private WebElement format; // Формат
 
     public CardInfoPage(WebDriver driver) {
         super(driver);
     }
 
-    public void validateCardInfo(){
+    public EventsPage validateCardInfo(){
         final String titleText = title.getText();
         Assertions.assertNotEquals("", titleText);
         logger.info("Проверяем, что название заполнено");
@@ -38,13 +38,15 @@ public class CardInfoPage extends BasePage{
         Assertions.assertNotEquals("", subtitleText);
         logger.info("Описание курса заполнено");
 
-        final String durationCourseText = durationCourse.getText();
-        Assertions.assertNotEquals("", durationCourseText);
-        logger.info("Продолжительность курса заполнена");
+        return new EventsPage(driver);
 
-        final String formatText = format.getText();
-        Assertions.assertNotEquals("", formatText);
-        logger.info("Формат курса заполнен");
+//        final String durationCourseText = durationCourse.getText();
+//        Assertions.assertNotEquals("", durationCourseText);
+//        logger.info("Продолжительность курса заполнена");
+
+//        final String formatText = format.getText();
+//        Assertions.assertNotEquals("", formatText);
+//        logger.info("Формат курса заполнен");
     }
 
 }
