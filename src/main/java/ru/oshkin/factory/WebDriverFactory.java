@@ -15,18 +15,17 @@ public class WebDriverFactory {
 
     private static final Logger logger = LogManager.getLogger(WebDriverFactory.class.getName());
 
-    private static WebDriver driver;
-
     public static WebDriver create(WebBrowserType webBrowserType, MutableCapabilities options) {
+        WebDriver driver;
         switch (webBrowserType) {
             case CHROME:
                 WebDriverManager.chromedriver().setup();
-                driver = options == null ? new ChromeDriver() : new ChromeDriver (options);
+                driver = options == null ? new ChromeDriver() : new ChromeDriver(options);
                 logger.info("Создали драйвер для CHROME");
                 return driver;
             case OPERA:
                 WebDriverManager.operadriver().setup();
-                driver = options == null ? new OperaDriver() : new OperaDriver (options);
+                driver = options == null ? new OperaDriver() : new OperaDriver(options);
                 logger.info("Создали драйвер для OPERA");
                 return driver;
             case MOZILLA:
