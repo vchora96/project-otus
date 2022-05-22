@@ -36,7 +36,8 @@ public class OtusHomeworkTest {
                 .logInByUser()
                 .openTesting()
                 .validateCardInfo()
-                .setEvents();
+                .openEvents()
+                .openEvent();
 
 //        driver.quit();
 //        driver = WebDriverFactory.create(type);

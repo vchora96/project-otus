@@ -17,26 +17,17 @@ public class EventsPage extends BasePage{
     @FindBy (xpath = "//a[contains(@title, 'Календарь мероприятий')]")
     private WebElement calendar;
 
-    @FindBy(css = "section.dod_new-events a")
-    private List<WebElement> lessons;
-
-    @FindBy(css = "span.dod_new-event__date-text")
-    private List<WebElement> infoDateEvents;
-
     public EventsPage(WebDriver driver) {
         super(driver);
     }
 
-   public void setEvents(){
+   public EventInfo openEvents(){
         events.click();
         logger.info("Кликаем на события");
 
         calendar.click();
         logger.info("Кликаем на календарь событий");
 
-        for (WebElement infoDateEvent : infoDateEvents) {
-            final String text = infoDateEvent.getText();
-            System.out.println(text);
-        }
+        return new EventInfo(driver);
     }
 }
