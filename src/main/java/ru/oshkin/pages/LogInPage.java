@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LogInPage extends BasePage {
 
@@ -63,13 +64,15 @@ public class LogInPage extends BasePage {
     }
 
     private void setLogin() {
-        mail.click();
+        WebElement button = wait.until(ExpectedConditions.elementToBeClickable(mail));
+        button.click();
         mail.sendKeys(login);
         logger.info("Ввели почту");
     }
 
     private void setPassword() {
-        password.click();
+        WebElement button = wait.until(ExpectedConditions.elementToBeClickable(password));
+        button.click();
         password.sendKeys(pass);
         logger.info("Ввели пароль");
     }
