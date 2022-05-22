@@ -5,15 +5,12 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-
-import java.util.concurrent.TimeUnit;
 
 public class LogInPage extends BasePage {
 
     private static final Logger logger = LogManager.getLogger(LogInPage.class.getName());
-    private final String login = System.getProperty("login", "macorax714@idurse.com");
-    private final String pass = System.getProperty("pass", "Test12345"); //пароль от тестовой УЗ
+    private final String login;
+    private final String pass;
 
     @FindBy(xpath = "//input[@type='text' and @placeholder='Электронная почта']")
     private WebElement mail;
@@ -36,11 +33,10 @@ public class LogInPage extends BasePage {
     @FindBy(css = "jdiv.closeIcon_f9a1")
     private WebElement chatCross;
 
-
-    public LogInPage(WebDriver driver) {
+    public LogInPage(WebDriver driver, String login, String pass) {
         super(driver);
-        PageFactory.initElements(driver, this);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        this.login = login;
+        this.pass = pass;
     }
 
     public TestingCoursesInfoPage logInByUser() {
@@ -50,7 +46,7 @@ public class LogInPage extends BasePage {
 
         setLogin();
         setPassword();
-        autorize();
+        authorize();
 
         return new TestingCoursesInfoPage(driver);
     }
@@ -70,35 +66,16 @@ public class LogInPage extends BasePage {
         mail.click();
         mail.sendKeys(login);
         logger.info("Ввели почту");
-        String text = mail.getText();
-       // assertEquals(login, text);
     }
 
     private void setPassword() {
         password.click();
         password.sendKeys(pass);
         logger.info("Ввели пароль");
-        String text = password.getText();
-       // assertEquals(pass, text);
     }
 
-    private void autorize() {
+    private void authorize() {
         button.submit();
         logger.info("Попытка авторизации");
     }
-
-//    private void openBlock() {
-//        userButton.click();
-//        logger.info("Раскрытие блока");
-//    }
-//
-//    private void openPersonalCabinet() {
-//        personalAccountButton.click();
-//        logger.info("Открываем личный кабинет");
-//    }
-//
-//    private void openAboutUser() {
-//        aboutUserButton.click();
-//        logger.info("Открываем информацию о себе");
-//    }
 }

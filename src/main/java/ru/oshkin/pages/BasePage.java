@@ -15,7 +15,6 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class BasePage {
 
-
     private static final Logger logger = LogManager.getLogger(BasePage.class.getName());
     protected final Wait<WebDriver> wait;
 
