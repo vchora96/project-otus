@@ -27,12 +27,8 @@ public class TestingCoursesInfoPage extends BasePage {
         super(driver);
     }
 
-    public void init(int amountCourses) {
-        this.amountCourses = amountCourses;
-    }
-
     public CardInfoPage openTesting(int amountCourses) {
-        init(amountCourses);
+        this.amountCourses = amountCourses;
         openTestingBlock();
         openCards();
         clickFirstCard();

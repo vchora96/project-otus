@@ -4,9 +4,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
+import ru.oshkin.factory.WebDriverFactory;
 import ru.oshkin.pages.LogInPage;
 import ru.oshkin.util.WebBrowserType;
-import ru.oshkin.factory.WebDriverFactory;
 
 import java.util.Locale;
 
@@ -15,7 +15,7 @@ public class OtusHomeworkTest {
     private WebBrowserType type;
     private final String login = System.getProperty("login", "macorax714@idurse.com");
     private final String pass = System.getProperty("pass", "Test12345"); //пароль от тестовой УЗ
-    private final int amountCourses = 11;
+    private final int amountCourses = 12;
 
     @BeforeEach
     public void startUp() {

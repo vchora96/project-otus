@@ -59,7 +59,7 @@ public class LogInPage extends BasePage {
                 logger.info("Закрываем всплывающее окно чата");
             }
         } catch (Exception ex) {
-            logger.error("Не удалось закрыть чат", ex);
+            logger.info("Не удалось закрыть чат");
         }
     }
 

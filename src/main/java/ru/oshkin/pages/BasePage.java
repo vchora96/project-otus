@@ -13,12 +13,12 @@ import java.time.Duration;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
-public class BasePage {
+public abstract class BasePage {
 
     private static final Logger logger = LogManager.getLogger(BasePage.class.getName());
     protected final Wait<WebDriver> wait;
 
-    public WebDriver driver;
+    protected WebDriver driver;
     //получаем свойство, определенное JVM (либо сам JVM, либо любые опции -D)
     private final String baseUrl = System.getProperty("url", "https://otus.ru");
 
@@ -27,11 +27,9 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        driver.manage().timeouts().implicitlyWait(5, SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, SECONDS);// неявное ожидание
         PageFactory.initElements(driver, this);// инициализирует поля помеченные @FindBy
-        wait = new WebDriverWait(driver,
-                Duration.ofSeconds(10).toMillis(),
-                Duration.ofSeconds(5).toMillis());
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5).toMillis());
     }
 
     protected void openSite() {
