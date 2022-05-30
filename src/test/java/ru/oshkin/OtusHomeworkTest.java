@@ -15,7 +15,6 @@ public class OtusHomeworkTest {
     private WebBrowserType type;
     private final String login = System.getProperty("login", "macorax714@idurse.com");
     private final String pass = System.getProperty("pass", "Test12345"); //пароль от тестовой УЗ
-    private final int amountCourses = 12;
 
     @BeforeEach
     public void startUp() {
@@ -36,7 +35,7 @@ public class OtusHomeworkTest {
 
         new LogInPage(driver, login, pass)
                 .logInByUser()
-                .openTesting(amountCourses)
+                .openTesting()
                 .validateCardInfo()
                 .openEvents()
                 .openEvent();

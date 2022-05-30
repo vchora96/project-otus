@@ -54,8 +54,8 @@ public class CardInfoPage extends BasePage {
     }
 
     private void readFormat() {
-        String durationCourseText = durationCourse.getText();
-        Assertions.assertNotEquals("", durationCourseText);
-        logger.info("Продолжительность курса заполнена");
+        String formatText = format.getText();
+        Assertions.assertNotEquals("", formatText);
+        logger.info("Формат курса указан");
     }
 }

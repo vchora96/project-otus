@@ -15,7 +15,7 @@ public class TestingCoursesInfoPage extends BasePage {
 
     private static final Logger logger = LogManager.getLogger(TestingCoursesInfoPage.class.getName());
 
-    private int amountCourses;
+    private final int amountCourses = 12;
 
     @FindBy(css = "div[id='categories_id'] a[title='Тестирование']")
     private WebElement buttonTesting;
@@ -27,10 +27,9 @@ public class TestingCoursesInfoPage extends BasePage {
         super(driver);
     }
 
-    public CardInfoPage openTesting(int amountCourses) {
-        this.amountCourses = amountCourses;
+    public CardInfoPage openTesting() {
         openTestingBlock();
-        openCards();
+        checkCards(this.amountCourses);
         clickFirstCard();
         return new CardInfoPage(driver);
     }
@@ -47,9 +46,10 @@ public class TestingCoursesInfoPage extends BasePage {
         logger.info("Кликаем на раздел Тестирование");
     }
 
-    private void openCards() {
+    private void checkCards(int expectedAmount) {
         int size = lessons.size();
-        assertEquals(amountCourses, size);
+        assertEquals(expectedAmount, size);
         logger.info(String.format("Отобразилось %s карточек", amountCourses));
+
     }
 }
